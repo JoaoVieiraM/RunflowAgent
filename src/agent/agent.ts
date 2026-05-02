@@ -1,5 +1,5 @@
 import { generateText, CoreMessage } from "ai";
-import { google } from "@ai-sdk/google";
+import { createGroq } from "@ai-sdk/groq";
 import { tools } from "./tools.js";
 import { systemPrompt } from "./prompt.js";
 
@@ -21,7 +21,7 @@ export async function runAgent(
   const toolsUsed: string[] = [];
 
   const result = await generateText({
-    model: google("gemini-2.0-flash"),
+    model: createGroq()("llama-3.3-70b-versatile"),
     system: systemPrompt,
     messages,
     tools,

@@ -7,7 +7,7 @@ export const tools = {
   list_products: tool({
     description:
       "Lista todos os produtos disponíveis na loja com id, nome, descrição, preço e quantidade em estoque.",
-    parameters: z.object({}),
+    parameters: z.preprocess((val) => val ?? {}, z.object({})),
     execute: async () => {
       const res = await fetch(`${API_BASE}/products`);
       return res.json();
